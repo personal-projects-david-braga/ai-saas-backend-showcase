@@ -2,18 +2,16 @@
 
 > **Sanitized engineering portfolio.** This project is a genericized public reference based on patterns used in private SaaS systems. It contains no customer data, proprietary workflows, production credentials, internal domains, or production infrastructure identifiers.
 
-A compact **multi-tenant AI-enabled SaaS backend** showing tenant isolation, FastAPI API design, relational persistence, retrieval context assembly, observability boundaries, and secure configuration practices.
+A compact **multi-tenant AI-enabled SaaS backend** showing explicit tenant isolation, FastAPI API design, domain modeling, retrieval-oriented architecture, and automated tests.
 
 ## What this demonstrates
 
-- FastAPI + SQLAlchemy service architecture
+- FastAPI service architecture with a relational persistence path
 - Explicit multi-tenant row scoping
 - Tenant-aware CRUD endpoints
-- RAG-oriented knowledge chunk model
+- RAG-oriented domain model and architecture
 - Separation of retrieval, API, persistence, and observability concerns
-- Environment-based configuration
 - Automated tests for tenant isolation
-- Container-ready runtime
 
 ## Architecture
 
@@ -49,20 +47,15 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-The development profile uses SQLite for frictionless evaluation. The same SQLAlchemy model is compatible with PostgreSQL-oriented production deployments.
+The public sample uses synthetic in-memory data so reviewers can inspect the tenant boundary without environment setup. Production implementations use relational persistence and vector retrieval behind the same service boundary.
 
 ## Repository layout
 
 ```text
 app/
   main.py
-  db.py
   models.py
   tenancy.py
-  routers/
-    matters.py
-  services/
-    rag.py
 tests/
   test_tenant_isolation.py
 docs/
